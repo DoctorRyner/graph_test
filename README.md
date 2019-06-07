@@ -11,7 +11,7 @@ You need to install record-dot-preprocessor via copy-compiler-tool or you can in
 # Brief overview
 
 ## Types
-Contains basic types for this task. I chose `Graph` to be just an alias to `[Node]` where Node is just a record, there is the declaration
+Contain basic types for this task. I chose `Graph` to be just an alias to `[Node]` where Node is just a record, there is the declaration
 
 ```Haskell
 data Node = Node
