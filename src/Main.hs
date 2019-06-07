@@ -2,7 +2,6 @@ module Main where
 
 import qualified Data.ByteString.Char8      as BSChar8
 import           Data.Functor.Contravariant ((>$<))
-import           Data.Maybe                 (catMaybes)
 import           Data.Text                  (Text)
 import           DB
 import qualified Hasql.Decoders             as D
@@ -159,5 +158,12 @@ server :: Server API
 server = swaggerSchemaUIServer (toSwagger (Proxy :: Proxy (ToServantApi Routes)))
     :<|> toServant routes
 
+tableCheck :: IO ()
+tableCheck = exec
+    "create table if not exists graph (id serial primary key, links int[], label text);"
+    mempty
+    E.unit
+    >> pure ()
+
 main :: IO ()
-main = Warp.run 3000 $ serve (Proxy :: Proxy API) server
+main = tableCheck >> (Warp.run 3000 $ serve (Proxy :: Proxy API) server)

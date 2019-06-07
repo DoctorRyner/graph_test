@@ -9,17 +9,18 @@ module DB.SimpleResult
 
 import           Data.Text
 import           DB.Hasql
-import qualified Hasql.Encoders as Encoders
+import qualified Hasql.Encoders as E
 import           Hasql.Decoders
 import           Hasql.Session
 import           Hasql.Statement
+import           Control.Monad.IO.Class (MonadIO)
 import           Data.ByteString
 
 query' :: ByteString -> Result b -> Session b 
 query' sqlCode decoder = statement () $ Statement sqlCode mempty decoder True
 
-query :: ByteString -> Result a -> Handler (Maybe a)
+query :: MonadIO m => ByteString -> Result a -> m (Maybe a)
 query sqlCode decoder = mkQuery $ query' sqlCode decoder
 
-queryParams :: ByteString -> a -> Encoders.Params a -> Result b -> Handler (Maybe b)
+queryParams :: MonadIO m => ByteString -> a -> E.Params a -> Result b -> m (Maybe b)
 queryParams sqlCode val encoder decoder = mkQuery $ statement val $ Statement sqlCode encoder decoder True

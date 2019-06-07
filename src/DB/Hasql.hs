@@ -1,6 +1,6 @@
 module DB.Hasql (module DB.Hasql, Handler) where
 
-import           Control.Monad.IO.Class (liftIO)
+import           Control.Monad.IO.Class (liftIO, MonadIO)
 import           Hasql.Connection
 import           Hasql.Decoders         as D
 import           Hasql.Session
@@ -15,7 +15,7 @@ connect = do
     Right connection <- acquire dbSettings
     pure connection
 
-mkQuery :: Session a -> Handler (Maybe a)
+mkQuery :: MonadIO m => Session a -> m (Maybe a)
 mkQuery query = liftIO (run query =<< connect) >>= \case
     Right val -> pure $ Just val
     Left  _   -> pure Nothing

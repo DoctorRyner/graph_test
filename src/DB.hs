@@ -12,9 +12,10 @@ import qualified DB.SimpleResult
 import           Hasql.Decoders  as D
 import           Hasql.Encoders  as E
 import           Servant         (Handler)
+import           Control.Monad.IO.Class (MonadIO)
 
-query :: ByteString -> Result a -> Handler (Maybe a)
+query :: MonadIO m => ByteString -> Result a -> m (Maybe a)
 query = DB.SimpleResult.query
 
-exec :: ByteString -> a -> Params a -> Handler (Maybe ())
+exec :: MonadIO m => ByteString -> a -> Params a -> m (Maybe ())
 exec = DB.Simple.query

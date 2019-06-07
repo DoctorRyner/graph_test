@@ -25,6 +25,7 @@ library:
   - LambdaCase
   ghc-options:
   - -F -pgmF=record-dot-preprocessor
+  - -Wno-name-shadowing
 
 executables:
   servant-playground-exe:
@@ -36,12 +37,15 @@ executables:
     - -with-rtsopts=-N
     - -Wall
     - -F -pgmF=record-dot-preprocessor
+    - -Wno-name-shadowing
     dependencies:
     - servant-playground
-    # default-extensions:
-    # - DataKinds
-    # - TypeOperators
-    # - DeriveGeneric
+    default-extensions:
+    - DataKinds
+    - TypeOperators
+    - DeriveGeneric
+    - OverloadedStrings
+    - LambdaCase
 
 tests:
   servant-playground-test:
