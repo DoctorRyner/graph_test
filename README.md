@@ -42,7 +42,7 @@ dbSettings :: Settings
 dbSettings = settings "localhost" 5432 "local" "" "graph_test"
 ```
 
-There are our credits to the DB. It means that we must have psql working on the `5432` port and have a user `local` with a db named `graph_test` with appropriate right (tabel will be created automatically if it does not exist)
+There are our credits to the DB. It means that we must have psql working on the `5432` port and have a user `local` with a db named `graph_test` with appropriate rights (tabel will be created automatically if it does not exist)
 
 ## DB.Simple DB.SimpleResult
 Contains helpers which just send query without a result and with a result accordingly
