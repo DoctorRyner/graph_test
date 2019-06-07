@@ -2,6 +2,8 @@
 
 ## How to build
 
+(IMPORTANT read DB.Hasql overview to get psql credits)
+
 Just type `stack build record-dot-preprocessor --copy-compiler-tool && stack run` and go to http://localhost:3000/swagger-ui
 
 You need to install record-dot-preprocessor via copy-compiler-tool or you can install it globaly using `stack install record-dot-preprocessor`. You need it to allow accesing a record fileds using dot like `point.x + 2`
