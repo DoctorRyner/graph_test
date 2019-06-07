@@ -1,11 +1,11 @@
 module DB.Hasql (module DB.Hasql, Handler) where
 
-import           Control.Monad.IO.Class (liftIO, MonadIO)
+import           Control.Monad          (replicateM)
+import           Control.Monad.IO.Class (MonadIO, liftIO)
 import           Hasql.Connection
 import           Hasql.Decoders         as D
 import           Hasql.Session
 import           Servant                (Handler, ServantErr, throwError)
-import Control.Monad (replicateM)
 
 dbSettings :: Settings
 dbSettings = settings "localhost" 5432 "local" "" "graph_test"

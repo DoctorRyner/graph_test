@@ -5,14 +5,14 @@ module DB
     , DB.SimpleResult.queryParams
     ) where
 
+import           Control.Monad.IO.Class (MonadIO)
 import           Data.ByteString
 import           DB.Hasql
 import qualified DB.Simple
 import qualified DB.SimpleResult
-import           Hasql.Decoders  as D
-import           Hasql.Encoders  as E
-import           Servant         (Handler)
-import           Control.Monad.IO.Class (MonadIO)
+import           Hasql.Decoders         as D
+import           Hasql.Encoders         as E
+import           Servant                (Handler)
 
 query :: MonadIO m => ByteString -> Result a -> m (Maybe a)
 query = DB.SimpleResult.query

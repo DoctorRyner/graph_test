@@ -7,14 +7,14 @@ module DB.Simple
     , Text
     ) where
 
+import           Control.Monad.IO.Class (MonadIO)
+import           Data.ByteString        (ByteString)
 import           Data.Text
 import           DB.Hasql
+import qualified Hasql.Decoders         as Decoders
 import           Hasql.Encoders
-import qualified Hasql.Decoders as Decoders
 import           Hasql.Session
 import           Hasql.Statement
-import           Data.ByteString (ByteString)
-import           Control.Monad.IO.Class (MonadIO)
 
 query' :: ByteString -> a -> Params a -> Session ()
 query' sqlCode val encoder = statement val $ Statement sqlCode encoder Decoders.unit True

@@ -7,16 +7,16 @@ module DB.SimpleResult
     , Text
     ) where
 
-import           Data.Text
-import           DB.Hasql
-import qualified Hasql.Encoders as E
-import           Hasql.Decoders
-import           Hasql.Session
-import           Hasql.Statement
 import           Control.Monad.IO.Class (MonadIO)
 import           Data.ByteString
+import           Data.Text
+import           DB.Hasql
+import           Hasql.Decoders
+import qualified Hasql.Encoders         as E
+import           Hasql.Session
+import           Hasql.Statement
 
-query' :: ByteString -> Result b -> Session b 
+query' :: ByteString -> Result b -> Session b
 query' sqlCode decoder = statement () $ Statement sqlCode mempty decoder True
 
 query :: MonadIO m => ByteString -> Result a -> m (Maybe a)
