@@ -12,7 +12,6 @@ import qualified DB.Simple
 import qualified DB.SimpleResult
 import           Hasql.Decoders         as D
 import           Hasql.Encoders         as E
-import           Servant                (Handler)
 
 query :: MonadIO m => ByteString -> Result a -> m (Maybe a)
 query = DB.SimpleResult.query

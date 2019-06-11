@@ -25,6 +25,5 @@ errOrUnpack err handler = handler >>= \case
     Just val -> pure val
     Nothing  -> throwError err
 
--- listArray :: NullableOrNot Value element -> Value [element]
--- Library creators "encapsulated" that
+listArray :: Value a -> Value [a]
 listArray = D.array . D.dimension replicateM . D.element
